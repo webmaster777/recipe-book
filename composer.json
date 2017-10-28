@@ -17,5 +17,10 @@
             "name": "Meindert-Jan Kroese",
             "email": "meindertjan@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mkroese\\RecipeBook\\" : "src/"
+        }
+    }
 }
