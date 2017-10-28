@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{application.title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="components/require.css" rel="stylesheet" type="text/css"/>
+  <script src="components/require.js"></script>
+</head>
+<body>
+<div class="container" style="margin-top: 3em;">
+  {% block head %}
+  <div class="jumbotron">
+    <div class="row">
+      <h1 class="col-lg-6">{{application.title}}</h1>
+      <blockquote class="col-lg-6 blockquote-reverse">
+        because all good things should be done well.
+        <footer>me. a year ago.</footer>
+      </blockquote>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block content %}
+
+  {% endblock %}
+
+  {% block foot %}
+  <p class="small">&copy; Meindert-Jan Kroese - {{application.version}}</p>
+  {% endblock %}
+</div>
+</body>
+</html>

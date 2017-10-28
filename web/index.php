@@ -2,13 +2,7 @@
 
 // main entry point of the application
 
+/** @var \DI\Container $container */
 $container = require_once __DIR__ . '/../index.php';
 
-$app = $container->get('application');
-
-// printf('This is "%s" version %s', $app->getName() ,$app->getFullVersion());
-
-$index = $container->get(Mkroese\RecipeBook\Controller\Index::class);
-echo $index->getHome();
-
-echo PHP_EOL;
+echo $container->call([Mkroese\RecipeBook\Controller\Index::class, "getHome"]);
