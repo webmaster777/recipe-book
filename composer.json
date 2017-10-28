@@ -1,0 +1,21 @@
+{
+    "name": "mkroese/recipe-book",
+    "description": "A recipe book project",
+    "type": "application",
+    "require": {
+        "doctrine/orm": "^2.5",
+        "psr/log": "^1.0",
+        "monolog/monolog": "^1.23",
+        "php-di/php-di": "^5.4",
+        "doctrine/dbal": "^2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "authors": [
+        {
+            "name": "Meindert-Jan Kroese",
+            "email": "meindertjan@gmail.com"
+        }
+    ]
+}
