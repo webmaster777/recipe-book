@@ -8,6 +8,7 @@ class Application {
 
   public function __construct($name = "Meindert-Jan's Recipe Book", $version = null) {
     $this->name = $name;
+    if($version) $this->parseVersion($version);
   }
 
   public function getName()
@@ -17,9 +18,13 @@ class Application {
 
   protected $versionParts, $fullVersion;
 
-  protected function parseVersion() {
-    $this->fullVersion = `git describe --tags --always`;
-    $versionParts = ["major" => 0, "minor" => 0, "patch" => 0, "prerelease" => "", "build" => ""];
+  protected function parseVersion($version = null) {
+    if(!$version) {
+      $version = `git describe --tags --always`;
+    }
+    $this->fullVersion = $version;
+
+    $this->versionParts = ["major" => 0, "minor" => 0, "patch" => 0, "prerelease" => "", "build" => ""];
 
     if(preg_match('/^v?(\d+)\.(\d+)\.(\d+)-?([^+]*)+?(.*)$/',$this->fullVersion, $matches)) {
       $versionParts["major"] = $matches[1];
