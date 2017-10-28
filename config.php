@@ -34,4 +34,18 @@ return [
     return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
   },
 
+  // twig stuff
+  'twig.paths' => [
+    __DIR__.'/view',
+  ],
+
+  'twig.config' => [
+    'debug' => true
+  ],
+
+  \Twig_LoaderInterface::class => object(\Twig_Loader_Filesystem::class)
+    ->constructor(get('twig.paths')),
+  \Twig_Environment::class => object()
+    ->constructorParameter('options', get('twig.config')),
+
 ];
