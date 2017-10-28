@@ -16,6 +16,7 @@ return [
   // application instance
   'application' => object(\Mkroese\RecipeBook\Application::class)
     ->constructor(get('application.title'), get('application.version')),
+  \Mkroese\RecipeBook\Application::class => get('application'),
 
   // doctrine orm settings
   'doctrine.orm.connection' => [
