@@ -2,11 +2,9 @@
 
 // main entry point of the application
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$container = require_once __DIR__ . '/../index.php';
 
-echo "hello recipe-book (autoload ='" .  __DIR__ . '/../vendor/autoload.php' . "')<br />" . PHP_EOL;
-
-$app = new \Mkroese\RecipeBook\Application();
+$app = $container->get('application');
 
 printf('This is "%s" version %s', $app->getName() ,$app->getFullVersion());
 
