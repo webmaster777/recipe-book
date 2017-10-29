@@ -14,16 +14,16 @@ use Doctrine\ORM\EntityNotFoundException;
 use Mkroese\RecipeBook\Application;
 use \Mkroese\RecipeBook\Entity\Recipe as RecipeEntity;
 
-class Recipe
+class Recipe extends Base
 {
-  protected $repository, $enitityManager, $application, $twig;
+  protected $repository, $enitityManager;
 
-  public function __construct(Application $application, EntityManager $entityManager, \Twig_Environment $twig)
+  public function __construct(Application $application, \Twig_Environment $twig, EntityManager $entityManager)
   {
+    parent::__construct($application, $twig);
+
     $this->enitityManager = $entityManager;
     $this->repository = $entityManager->getRepository(RecipeEntity::class);
-    $this->application = $application;
-    $this->twig = $twig;
   }
 
   public function editRecipe($id = null)
@@ -38,7 +38,6 @@ class Recipe
     if(!$entity)
       throw new EntityNotFoundException('Recipe not found!');
 
-    $alerts = [];
     // technical form info
     $form = [
       "method" => "post",
@@ -51,25 +50,23 @@ class Recipe
       $this->enitityManager->persist($entity);
       $this->enitityManager->flush($entity);
 
-      $alerts[] = ["type"=>"success", "message" => <<<MSG
+      $this->addAlert(<<<MSG
 Recipe saved! You can continue to edit this or <a class="alert-link" href=".">return to the list</a>.
 MSG
-      ];
-      // note the fallthrough, we show the (updated) form again.
+      , "success");
 
+      // note the fallthrough, we show the (updated) form again.
       $form["action"] = "?id=" . $entity->getId();
     }
 
 
     // create rendering context
     $context = [
-      "alerts" => $alerts,
-      "application" => $this->application,
       "form" => $form,
       "recipe" => $entity
     ];
 
-    return $this->twig->render("recipe/edit.html.twig", $context);
+    return $this->render("recipe/edit.html.twig", $context);
   }
 
   public function deleteRecipe($id)

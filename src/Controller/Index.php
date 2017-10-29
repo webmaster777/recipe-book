@@ -5,33 +5,21 @@ namespace Mkroese\RecipeBook\Controller;
 use DI\InvokerInterface;
 use Mkroese\RecipeBook\Application;
 
-class Index
+class Index extends Base
 {
   protected $app;
-
-  /**
-   * Index constructor. (should be injected)
-   *
-   * @param Application $app
-   */
-  public function __construct(Application $app)
-  {
-    $this->app = $app;
-  }
 
   /**
    * renders the index.html.twig template
    *
    * @param InvokerInterface $container
-   * @param \Twig_Environment $twig
    * @return string
    */
-  public function getHome(InvokerInterface $container, \Twig_Environment $twig)
+  public function getHome(InvokerInterface $container)
   {
     $recipes = $container->call([Recipe::class,"getRecipeList"]);
 
-    return $twig->render("index.html.twig",[
-      "application" => $this->app,
+    return $this->render("index.html.twig",[
       "recipes" => $recipes
     ]);
   }
