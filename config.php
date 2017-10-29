@@ -24,8 +24,10 @@ return [
     'path'   => __DIR__ . '/exampledb.db',
   ],
   'doctrine.orm.config' => function() {
-    return \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+    $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
       array(__DIR__."/src"), true, null, null, false);
+    $config->setEntityNamespaces(['r'=>'\Mkroese\RecipeBook\Entity']);
+    return $config;
   },
   \Doctrine\ORM\EntityManager::class => factory([\Doctrine\ORM\EntityManager::class, 'create'])
   ->parameter('conn', get('doctrine.orm.connection'))

@@ -21,11 +21,11 @@ class RecipeRepository extends EntityRepository
   public function findWithTitleLike($title)
   {
     $q = $this->getEntityManager()->createQuery(<<<DQL
-SELECT rec.*
-FROM Recipe rec
-WHERE rec.title LIKE ?
+SELECT rec
+FROM r:Recipe rec
+WHERE rec.title LIKE ?0
 DQL
-);
+      );
     return $q->execute([sprintf('%%%s%%',$title)]);
   }
 
