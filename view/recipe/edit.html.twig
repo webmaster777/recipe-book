@@ -3,10 +3,10 @@
 {% block content %}
 <form action="{{ form.action }}" method="{{ form.method }}">
   <div class="form-group">
-    <label for="title" >title</label>
+    <label for="title" >Title</label>
     <input name="title" type="text" value="{{ recipe.title }}" class="form-control"/>
 
-    <label>cooking steps</label>
+    <label>Cooking steps</label>
     <textarea name="cooking-steps" class="form-control" style="min-height: 6em;">{% for step in recipe.cookingSteps %}
 {{ step.instructions }}
 
