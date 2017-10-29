@@ -1,6 +1,7 @@
 {
     "name": "mkroese/recipe-book",
     "description": "A recipe book project",
+    "license": "MIT",
     "type": "application",
     "require": {
         "doctrine/orm": "^2.5",
