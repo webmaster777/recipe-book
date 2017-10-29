@@ -105,8 +105,8 @@ MSG
     header('Location: .?deletedRecipe=true');
   }
 
-  public function getRecipeList()
+  public function getRecipeList($limit = null)
   {
-    return $this->repository->findAll();
+    return $this->repository->findBy([],['id' => 'ASC'],$limit);
   }
 }

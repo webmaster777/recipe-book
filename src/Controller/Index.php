@@ -3,7 +3,8 @@
 namespace Mkroese\RecipeBook\Controller;
 
 use DI\InvokerInterface;
-use Mkroese\RecipeBook\Application;
+use Doctrine\ORM\EntityManager;
+use Mkroese\RecipeBook\Entity\Repository\RecipeRepository;
 
 class Index extends Base
 {
@@ -12,19 +13,34 @@ class Index extends Base
   /**
    * renders the index.html.twig template
    *
-   * @param InvokerInterface $container
+   * @param InvokerInterface $invoker
+   * @param EntityManager $entityManager
    * @param bool $deletedRecipe
+   * @param string|null $q
    * @return string
    */
-  public function getHome(InvokerInterface $container, bool $deletedRecipe = false)
+  public function getHome(InvokerInterface $invoker, EntityManager $entityManager,
+                          bool $deletedRecipe = false, string $q = null)
   {
-    $recipes = $container->call([Recipe::class,"getRecipeList"]);
+    if(!$q) {
+      $recipes = $invoker->call([Recipe::class,"getRecipeList"], ["limit" => 10]);
+    }
+    else
+    {
+      /** @var RecipeRepository $repo */
+      $repo = $entityManager->getRepository(\Mkroese\RecipeBook\Entity\Recipe::class);
+      $recipes = $repo->findWithTitleLike($q);
+    }
 
     if($deletedRecipe)
       $this->addAlert("Recipe was deleted succesfully");
 
-    return $this->render("index.html.twig",[
-      "recipes" => $recipes
-    ]);
+    $context = [
+      "recipes" => $recipes,
+      "q" => $q
+    ];
+
+
+    return $this->render("index.html.twig", $context);
   }
 }
