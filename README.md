@@ -4,6 +4,7 @@ This is just a small project I've set up in 2 days,
 just to experiment how quickly I was able to set up a
 simple CRUD application using:
 
+* PHP-DI for dependency injection
 * Doctrine ORM for models
 * Twig for views
 * Handwritten controllers
