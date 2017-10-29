@@ -2,6 +2,8 @@
 
 namespace Mkroese\RecipeBook\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,7 +19,7 @@ class Recipe {
    * @var int
    *
    * @ORM\Id()
-   * @ORM\Column(type="bigint")
+   * @ORM\Column(type="integer")
    * @ORM\GeneratedValue()
    */
   protected $id;
@@ -29,11 +31,16 @@ class Recipe {
   public $title;
 
   /**
-   * @var CookingStep[]
+   * @var Collection|CookingStep[]
    *
-   * @ORM\OneToMany(targetEntity="CookingStep", mappedBy="CookingStep")
+   * @ORM\OneToMany(targetEntity="CookingStep", mappedBy="recipe", cascade={"all"})
    */
   public $cookingSteps;
+
+  public function __construct()
+  {
+    $this->cookingSteps = new ArrayCollection();
+  }
 
   public function getId() {
     return $this->id;

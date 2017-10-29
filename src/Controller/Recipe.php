@@ -12,6 +12,7 @@ namespace Mkroese\RecipeBook\Controller;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Mkroese\RecipeBook\Application;
+use Mkroese\RecipeBook\Entity\CookingStep;
 use \Mkroese\RecipeBook\Entity\Recipe as RecipeEntity;
 
 class Recipe extends Base
@@ -45,6 +46,27 @@ class Recipe extends Base
 
     if($_SERVER["REQUEST_METHOD"] === "POST") {
       $entity->title = $_POST["title"];
+
+      $steps = $_POST["cooking-steps"];
+
+      $steps = array_map('trim',preg_split('/\R{2}/',$steps));
+
+      foreach ($entity->cookingSteps as $cookingStep) {
+        $this->enitityManager->remove($cookingStep);
+      }
+      $entity->cookingSteps->clear();
+
+      foreach ($steps as $step) {
+        if(!$step) {
+          continue;
+        }
+
+        $cookingStep = new CookingStep();
+        $this->enitityManager->persist($cookingStep);
+        $entity->cookingSteps->add($cookingStep
+          ->setInstructions($step)
+          ->setRecipe($entity));
+      }
 
       // Save recipe to the database.
       $this->enitityManager->persist($entity);

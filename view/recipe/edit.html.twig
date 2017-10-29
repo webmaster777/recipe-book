@@ -5,6 +5,13 @@
   <div class="form-group">
     <label for="title" >title</label>
     <input name="title" type="text" value="{{ recipe.title }}" class="form-control"/>
+
+    <label>cooking steps</label>
+    <textarea name="cooking-steps" class="form-control" style="min-height: 6em;">{% for step in recipe.cookingSteps %}
+{{ step.instructions }}
+
+
+{% endfor %}</textarea>
   </div>
   <input type="submit" class="btn btn-primary" value="Save" />
   <input type="reset" class="btn btn-default" value="Reset"/>
