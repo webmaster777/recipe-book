@@ -31,10 +31,7 @@ class Index
     $recipes = $container->call([Recipe::class,"getRecipeList"]);
 
     return $twig->render("index.html.twig",[
-      "application" => [
-        "title"=>$this->app->getName(),
-        "version" => $this->app->getFullVersion(),
-      ],
+      "application" => $this->app,
       "recipes" => $recipes
     ]);
   }
