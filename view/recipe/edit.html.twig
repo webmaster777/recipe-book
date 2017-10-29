@@ -2,7 +2,11 @@
 
 {% block content %}
 <form action="{{ form.action }}" method="{{ form.method }}">
-  <label for="title" >title</label>
-  <input name="title" type="text" value="{{ recipe.title }}"/>
+  <div class="form-group">
+    <label for="title" >title</label>
+    <input name="title" type="text" value="{{ recipe.title }}" class="form-control"/>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Save" />
+  <input type="reset" class="btn btn-default" value="Reset"/>
 </form>
 {% endblock %}

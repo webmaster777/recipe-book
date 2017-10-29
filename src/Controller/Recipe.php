@@ -38,6 +38,12 @@ class Recipe
     if(!$entity)
       throw new EntityNotFoundException('Recipe not found!');
 
+    $alerts = [];
+    // technical form info
+    $form = [
+      "method" => "post",
+    ];
+
     if($_SERVER["REQUEST_METHOD"] === "POST") {
       $entity->title = $_POST["title"];
 
@@ -45,16 +51,19 @@ class Recipe
       $this->enitityManager->persist($entity);
       $this->enitityManager->flush($entity);
 
+      $alerts[] = ["type"=>"success", "message" => <<<MSG
+Recipe saved! You can continue to edit this or <a class="alert-link" href=".">return to the list</a>.
+MSG
+      ];
       // note the fallthrough, we show the (updated) form again.
+
+      $form["action"] = "?id=" . $entity->getId();
     }
 
-    // technical form info
-    $form = [
-      "method" => "post",
-    ];
 
-    // create rencering context
+    // create rendering context
     $context = [
+      "alerts" => $alerts,
       "application" => $this->application,
       "form" => $form,
       "recipe" => $entity
