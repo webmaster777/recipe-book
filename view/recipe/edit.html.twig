@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<form action="{{ form.action }}" method="{{ form.method }}">
+  <label for="title" >title</label>
+  <input name="title" type="text" value="{{ recipe.title }}"/>
+</form>
+{% endblock %}
