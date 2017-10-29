@@ -72,6 +72,20 @@ MSG
     return $this->twig->render("recipe/edit.html.twig", $context);
   }
 
+  public function deleteRecipe($id)
+  {
+    if($id)
+      $entity = $this->repository->find($id);
+
+    if (!$id || !$entity)
+      throw new EntityNotFoundException("no or invalid id provided");
+
+    $this->enitityManager->remove($entity);
+    $this->enitityManager->flush($entity);
+
+    header('Location: .');
+  }
+
   public function getRecipeList()
   {
     return $this->repository->findAll();
