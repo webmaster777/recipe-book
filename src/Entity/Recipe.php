@@ -2,11 +2,14 @@
 
 namespace Mkroese\RecipeBook\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Recipe
  * @package Mkroese\RecipeBook\Entity
  *
  * @Entity
+ * @ORM\Entity(repositoryClass="\Mkroese\RecipeBook\Entity\Repository\RecipeRepository")
  * @Table(name="recipe")
  *
  */
