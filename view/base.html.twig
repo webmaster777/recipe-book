@@ -21,12 +21,19 @@
   </div>
   {% endblock %}
 
-  {% block content %}
+  {% for alert in alerts %}
+    {# show an alert #}
+    <div class="alert {% if alert.type %}alert-{{ alert.type }}{% else %}alert-info{% endif %}">
+      {{ alert.message|raw }}
+    </div>
+  {% endfor %}
 
+  {% block content %}
+  {# This should be filled by extendees #}
   {% endblock %}
 
   {% block foot %}
-  <p class="small">&copy; Meindert-Jan Kroese - {{application.fullVersion}}</p>
+  <p class="small" style="margin-top: 3em;">&copy; Meindert-Jan Kroese - {{application.fullVersion}}</p>
   {% endblock %}
 </div>
 </body>
