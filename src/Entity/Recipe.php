@@ -8,25 +8,32 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Recipe
  * @package Mkroese\RecipeBook\Entity
  *
- * @Entity
  * @ORM\Entity(repositoryClass="\Mkroese\RecipeBook\Entity\Repository\RecipeRepository")
- * @Table(name="recipe")
+ * @ORM\Table(name="recipe")
  *
  */
 class Recipe {
   /**
    * @var int
-   * @Id
-   * @Column(type="integer")
-   * @GeneratedValue
+   *
+   * @ORM\Id()
+   * @ORM\Column(type="bigint")
+   * @ORM\GeneratedValue()
    */
   protected $id;
 
   /**
    * @var string
-   * @Column(type="string")
+   * @ORM\Column(type="string")
    */
   public $title;
+
+  /**
+   * @var CookingStep[]
+   *
+   * @ORM\OneToMany(targetEntity="CookingStep", mappedBy="CookingStep")
+   */
+  public $cookingSteps;
 
   public function getId() {
     return $this->id;
