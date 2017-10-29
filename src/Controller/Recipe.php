@@ -80,7 +80,7 @@ MSG
     $this->enitityManager->remove($entity);
     $this->enitityManager->flush($entity);
 
-    header('Location: .');
+    header('Location: .?deletedRecipe=true');
   }
 
   public function getRecipeList()
