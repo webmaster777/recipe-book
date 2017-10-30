@@ -30,6 +30,11 @@ class Index extends Base
       /** @var RecipeRepository $repo */
       $repo = $entityManager->getRepository(\Mkroese\RecipeBook\Entity\Recipe::class);
       $recipes = $repo->findWithTitleLike($q);
+
+      if(!$recipes || !count($recipes))
+      {
+        $this->addAlert("No recipes matched your query", "warning");
+      }
     }
 
     if($deletedRecipe)
