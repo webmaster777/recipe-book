@@ -53,4 +53,7 @@ return [
   \Twig_Environment::class => object()
     ->constructorParameter('options', get('twig.config')),
 
+  // Slim settings
+  'settings.displayErrorDetails' => true,
+
 ];
