@@ -14,6 +14,9 @@ use Doctrine\ORM\EntityNotFoundException;
 use Mkroese\RecipeBook\Application;
 use Mkroese\RecipeBook\Entity\CookingStep;
 use \Mkroese\RecipeBook\Entity\Recipe as RecipeEntity;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Request;
 
 class Recipe extends Base
 {
@@ -27,7 +30,7 @@ class Recipe extends Base
     $this->repository = $entityManager->getRepository(RecipeEntity::class);
   }
 
-  public function editRecipe($id = null)
+  public function editRecipe(Request $request, ResponseInterface $response, $id = null)
   {
     if($id === null) {
       $entity = new RecipeEntity();
@@ -44,10 +47,10 @@ class Recipe extends Base
       "method" => "post",
     ];
 
-    if($_SERVER["REQUEST_METHOD"] === "POST") {
-      $entity->title = $_POST["title"];
+    if($request->getMethod() === "POST") {
+      $entity->title = $request->getParam("title");
 
-      $steps = $_POST["cooking-steps"];
+      $steps =  $request->getParam("cooking-steps");
 
       $steps = array_map('trim',preg_split('/\R{2}/',$steps));
 
@@ -78,7 +81,7 @@ MSG
       , "success");
 
       // note the fallthrough, we show the (updated) form again.
-      $form["action"] = "?id=" . $entity->getId();
+      $form["action"] = "/recipe/" . $entity->getId() . "/edit";
     }
 
 
@@ -88,10 +91,13 @@ MSG
       "recipe" => $entity
     ];
 
-    return $this->render("recipe/edit.html.twig", $context);
+    $content =  $this->render("recipe/edit.html.twig", $context);
+
+    $response->getBody()->write($content);
+    return $response;
   }
 
-  public function deleteRecipe($id)
+  public function deleteRecipe($id, ResponseInterface $response)
   {
     if($id)
       $entity = $this->repository->find($id);
@@ -102,7 +108,8 @@ MSG
     $this->enitityManager->remove($entity);
     $this->enitityManager->flush($entity);
 
-    header(sprintf('Location: %s?deletedRecipe=true', $this->application->getBaseHref()));
+    return $response->withHeader('Location',
+      sprintf('%s?deletedRecipe=true', $this->application->getBaseHref()));
   }
 
   public function getRecipeList($limit = null)
