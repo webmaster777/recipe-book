@@ -12,10 +12,12 @@ return [
   'application.title' => "Meindert-Jan's Recipe Book",
   'application.version' => null, // let app automatically figure out
   'application.rootdir' => __DIR__,
+  'application.baseHref' => '/', // overwrite this when deploying in a subfolder
 
   // application instance
   'application' => object(\Mkroese\RecipeBook\Application::class)
-    ->constructor(get('application.title'), get('application.version')),
+    ->constructor(get('application.title'), get('application.version'))
+    ->constructorParameter('baseHref', get('application.baseHref')),
   \Mkroese\RecipeBook\Application::class => get('application'),
 
   // doctrine orm settings

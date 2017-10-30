@@ -4,11 +4,24 @@ namespace Mkroese\RecipeBook;
 
 class Application {
 
-  protected $name;
+  protected $name, $baseHref;
 
-  public function __construct($name = "Meindert-Jan's Recipe Book", $version = null) {
+  /**
+   * Application constructor.
+   * @param string $name
+   * @param null|string $version
+   * @param null|string $baseHref
+   */
+  public function __construct($name = "Meindert-Jan's Recipe Book", $version = null, $baseHref = null) {
     $this->name = $name;
     if($version) $this->parseVersion($version);
+
+    if($baseHref === null) {
+      // we'll guess it's / ?
+      $baseHref = '/';
+    }
+
+    $this->baseHref = $baseHref;
   }
 
   public function getName()
@@ -55,6 +68,13 @@ class Application {
     }
 
     throw new \InvalidArgumentException("part must be one of " . var_export(array_keys($this->versionParts), true));
+  }
+
+  /**
+   * @return null|string
+   */
+  public function getBaseHref() {
+    return $this->baseHref;
   }
 
 }
