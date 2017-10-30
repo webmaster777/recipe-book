@@ -12,9 +12,9 @@
       <td>{{ recipe.title }}</td>
       <td>
         <div class="pull-right btn-group">
-          <a class="btn btn-default" href="edit-recipe.php?id={{ recipe.id }}">Edit</a>
+          <a class="btn btn-default" href="/recipe/{{ recipe.id }}/edit">Edit</a>
           <a class="btn btn-default" onclick="return confirm('are you sure? it sure looks tasty!');"
-             href="delete-recipe.php?id={{ recipe.id }}">
+             href="/recipe/{{ recipe.id }}/delete">
             <span class="glyphicon glyphicon-trash" />
           </a>
         </div>

@@ -73,7 +73,7 @@ class Recipe extends Base
       $this->enitityManager->flush($entity);
 
       $this->addAlert(<<<MSG
-Recipe saved! You can continue to edit this or <a class="alert-link" href=".">return to the list</a>.
+Recipe saved! You can continue to edit this or <a class="alert-link" href="/">return to the list</a>.
 MSG
       , "success");
 
