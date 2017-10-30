@@ -27,7 +27,6 @@ simple CRUD application using:
 3. Search recipes (by title)
 
 ## What could be next?
-* [ ] use slim for routing, or at least something other than adding a php file for
-  each special page / like setting up a router for the dev-server
+* [ ] use slim for routing?
 * [ ] a view action
 * [ ] better handling of cooking steps / clientside additions
