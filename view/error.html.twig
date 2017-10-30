@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+  <div class="bg-danger well-lg">
+    <h1>{{ error.code  }} <small>{{ error.shortMessage }}</small></h1>
+
+    <p>{{ error.longMessage }}</p>
+
+    <div>
+      <a class="btn btn-primary" href="/">Take me Home, country roads</a>
+    </div>
+  </div>
+
+{% endblock %}
