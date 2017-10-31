@@ -55,5 +55,6 @@ return [
 
   // Slim settings
   'settings.displayErrorDetails' => true,
+  'notFoundHandler' => get(Mkroese\RecipeBook\Controller\NotFound::class),
 
 ];
