@@ -7,6 +7,7 @@ simple CRUD application using:
 * [PHP-DI](http://php-di.org/) for dependency injection
 * [Doctrine ORM](http://www.doctrine-project.org/projects/orm.html) for models
 * [Twig](https://twig.symfony.com/) for views
+* [Slim](https://www.slimframework.com/) for routing and http foundation (psr-7)
 * Handwritten controllers
 
 ## Requirements
@@ -27,6 +28,6 @@ simple CRUD application using:
 3. Search recipes (by title)
 
 ## What could be next?
-* [ ] use slim for routing?
+* [x] use slim for routing?
 * [ ] a view action
 * [ ] better handling of cooking steps / clientside additions
