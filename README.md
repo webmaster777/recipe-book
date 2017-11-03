@@ -1,4 +1,4 @@
-# Recipe Book
+# Recipe Book [![build-status](https://api.travis-ci.org/webmaster777/recipe-book.svg?branch=master)](https://travis-ci.org/webmaster777/recipe-book)
 
 This is just a small project I've set up in 2 days,
 just to experiment how quickly I was able to set up a

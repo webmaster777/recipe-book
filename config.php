@@ -57,4 +57,29 @@ return [
   'settings.displayErrorDetails' => true,
   'notFoundHandler' => get(Mkroese\RecipeBook\Controller\NotFound::class),
 
+
+  // Slim application
+  \Slim\App::class => function(\Interop\Container\ContainerInterface $container) {
+    $app = new \Slim\App($container);
+
+    // Add all routes
+
+    // home
+    $app->get('/',
+      [\Mkroese\RecipeBook\Controller\Index::class,'getHome']);
+
+    // edit/add a recipe
+    $app->map(['get','post'],'/recipe/{id}/edit',
+      [\Mkroese\RecipeBook\Controller\Recipe::class,'editRecipe']);
+    $app->map(['get','post'],'/recipe/add',
+      [\Mkroese\RecipeBook\Controller\Recipe::class,'editRecipe']);
+
+    // delete routes
+    $app->delete('/recipe/{id}',[
+      \Mkroese\RecipeBook\Controller\Recipe::class,'deleteRecipe']);
+    $app->get('/recipe/{id}/delete',
+      [\Mkroese\RecipeBook\Controller\Recipe::class,'deleteRecipe']);
+
+    return $app;
+  }
 ];
