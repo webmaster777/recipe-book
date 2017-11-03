@@ -8,7 +8,6 @@
     <whitelist processUncoveredFilesFromWhitelist="true">
       <file>./config.php</file>
       <directory suffix=".php">./src</directory>
-      <directory suffix=".php">./test</directory>
     </whitelist>
   </filter>
   <logging>
