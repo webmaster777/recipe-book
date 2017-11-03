@@ -26,6 +26,11 @@
             "Mkroese\\RecipeBook\\" : "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Mkroese\\RecipeBook\\Test" : "test/"
+        }
+    },
     "config": {
         "component-dir": "web/components"
     }
