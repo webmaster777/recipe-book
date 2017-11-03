@@ -1,4 +1,4 @@
-# Recipe Book [![build-status](https://api.travis-ci.org/webmaster777/recipe-book.svg?branch=master)](https://travis-ci.org/webmaster777/recipe-book)
+# Recipe Book [![build-status](https://api.travis-ci.org/webmaster777/recipe-book.svg?branch=master)](https://travis-ci.org/webmaster777/recipe-book) [![coverage-status](https://coveralls.io/repos/github/webmaster777/recipe-book/badge.svg?branch=master)](https://coveralls.io/github/webmaster777/recipe-book?branch=master)
 
 This is just a small project I've set up in 2 days,
 just to experiment how quickly I was able to set up a
