@@ -17,5 +17,7 @@ class CheckContainerTest extends TestCase
     $title = $container->get('application.title');
 
     $this->assertNotEmpty($title, "application.title is empty");
+
+    return $container;
   }
 }
