@@ -28,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Mkroese\\RecipeBook\\Test" : "test/"
+            "Mkroese\\RecipeBook\\Test\\" : "test/"
         }
     },
     "config": {
