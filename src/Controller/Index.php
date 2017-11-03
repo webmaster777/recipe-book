@@ -43,7 +43,7 @@ class Index extends Base
     }
 
     if($deletedRecipe)
-      $this->addAlert("Recipe was deleted succesfully");
+      $this->addAlert("Recipe was deleted successfully");
 
     $context = [
       "recipes" => $recipes,
