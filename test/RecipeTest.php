@@ -152,6 +152,22 @@ class RecipeTest extends TestCase
 
 
     $this->assertEquals(200, $response->getStatusCode());
+  }
 
+  public function testInvalidDelete() {
+    $env = Environment::mock([
+      'REQUEST_METHOD' => 'DELETE',
+      'REQUEST_URI'    => "/recipe/invalidid999999",
+    ]);
+
+    $request = Request::createFromEnvironment($env);
+
+    $this->container->set('request',$request);
+
+    $app = $this->container->get(App::class);
+    $response = $app->run(true);
+
+
+    $this->assertEquals(500, $response->getStatusCode());
   }
 }
