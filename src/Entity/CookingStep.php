@@ -36,14 +36,6 @@ class CookingStep
   protected $instructions;
 
   /**
-   * @return int
-   */
-  public function getId(): int
-  {
-    return $this->id;
-  }
-
-  /**
    * @param string $instructions
    * @return CookingStep
    */
@@ -69,13 +61,5 @@ class CookingStep
   {
     $this->recipe = $recipe;
     return $this;
-  }
-
-  /**
-   * @return Recipe
-   */
-  public function getRecipe(): Recipe
-  {
-    return $this->recipe;
   }
 }
