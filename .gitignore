@@ -1,6 +1,17 @@
+# composer dependencies
 /vendor/
+
+# ide
 .idea
+
+# the database file (sqlite)
 exampledb.db
 
+# local config
+/environment.config.php
+/cache.config.php
+
+# ignore output dirs
 /web/components/
 /build
+/cache
